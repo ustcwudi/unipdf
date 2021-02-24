@@ -440,7 +440,7 @@ type ButtonType int ;
 
 // MergePageWith appends page content to source Pdf file page content.
 func (_bddg *PdfAppender )MergePageWith (pageNum int ,page *PdfPage )error {_babd :=pageNum -1;var _efbg *PdfPage ;for _gafb ,_feff :=range _bddg ._bcabf {if _gafb ==_babd {_efbg =_feff ;};};if _efbg ==nil {return _b .Errorf ("\u0045\u0052\u0052\u004f\u0052\u003a\u0020\u0050\u0061\u0067\u0065\u0020\u0064\u0069\u0063\u0074\u0069\u006f\u006e\u0061r\u0079\u0020\u0025\u0064\u0020\u006e\u006f\u0074\u0020f\u006f\u0075\u006e\u0064\u0020\u0069\u006e\u0020\u0074\u0068\u0065\u0020\u0073o\u0075\u0072\u0063\u0065\u0020\u0064o\u0063\u0075\u006de\u006e\u0074",pageNum );
-};if _efbg ._gggeb !=nil &&_efbg ._gggeb .GetParser ()==_bddg ._ddda ._gedb {_efbg =_efbg .Duplicate ();_bddg ._bcabf [_babd ]=_efbg ;};page =page .Duplicate ();_cbdc (page );_eceb :=_baae (_efbg );_ccbg :=_baae (page );_edeba :=make (map[_gb .PdfObjectName ]_gb .PdfObjectName );
+};if _efbg ._gggeb !=nil &&_efbg ._gggeb .GetParser ()==_bddg ._ddda ._gedb {_efbg =_efbg .Duplicate ();_bddg ._bcabf [_babd ]=_efbg ;};page =page .Duplicate ();_eceb :=_baae (_efbg );_ccbg :=_baae (page );_edeba :=make (map[_gb .PdfObjectName ]_gb .PdfObjectName );
 for _gbde :=range _ccbg {if _ ,_dbce :=_eceb [_gbde ];_dbce {for _cdcd :=1;true ;_cdcd ++{_gfcf :=_gb .PdfObjectName (string (_gbde )+_fa .Itoa (_cdcd ));if _ ,_cdga :=_eceb [_gfcf ];!_cdga {_edeba [_gbde ]=_gfcf ;break ;};};};};_fgc ,_eadf :=page .GetContentStreams ();
 if _eadf !=nil {return _eadf ;};_dgcae ,_eadf :=_efbg .GetContentStreams ();if _eadf !=nil {return _eadf ;};for _aagd ,_aaeb :=range _fgc {for _dgff ,_gbdec :=range _edeba {_aaeb =_fd .Replace (_aaeb ,"\u002f"+string (_dgff ),"\u002f"+string (_gbdec ),-1);
 };_fgc [_aagd ]=_aaeb ;};_dgcae =append (_dgcae ,_fgc ...);if _eafd :=_efbg .SetContentStreams (_dgcae ,_gb .NewFlateEncoder ());_eafd !=nil {return _eafd ;};_efbg ._cafdf =append (_efbg ._cafdf ,page ._cafdf ...);if _efbg .Resources ==nil {_efbg .Resources =NewPdfPageResources ();
@@ -1548,7 +1548,7 @@ func (_dedae *PdfColorspaceCalGray )ToPdfObject ()_gb .PdfObject {_cbgg :=&_gb .
 func (_edgc *PdfColorspaceDeviceN )DecodeArray ()[]float64 {var _caee []float64 ;for _gffg :=0;_gffg < _edgc .GetNumComponents ();_gffg ++{_caee =append (_caee ,0.0,1.0);};return _caee ;};
 
 // AddPage adds a page to the PDF file. The new page should be an indirect object.
-func (_cadb *PdfWriter )AddPage (page *PdfPage )error {const _debff ="\u006d\u006f\u0064el\u003a\u0050\u0064\u0066\u0057\u0072\u0069\u0074\u0065\u0072\u002e\u0041\u0064\u0064\u0050\u0061\u0067\u0065";_cbdc (page );_fgcc :=page .ToPdfObject ();_dgf .Log .Trace ("\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d");
+func (_cadb *PdfWriter )AddPage (page *PdfPage )error {const _debff ="\u006d\u006f\u0064el\u003a\u0050\u0064\u0066\u0057\u0072\u0069\u0074\u0065\u0072\u002e\u0041\u0064\u0064\u0050\u0061\u0067\u0065";_fgcc :=page .ToPdfObject ();_dgf .Log .Trace ("\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d");
 _dgf .Log .Trace ("\u0041p\u0070\u0065\u006e\u0064i\u006e\u0067\u0020\u0074\u006f \u0070a\u0067e\u0020\u006c\u0069\u0073\u0074\u0020\u0025T",_fgcc );_cgfaa ,_gfdcb :=_gb .GetIndirect (_fgcc );if !_gfdcb {return _ga .New ("\u0070\u0061\u0067\u0065\u0020\u0073h\u006f\u0075\u006c\u0064\u0020\u0062\u0065\u0020\u0061\u006e\u0020\u0069\u006ed\u0069\u0072\u0065\u0063\u0074\u0020\u006fb\u006a\u0065\u0063\u0074");
 };_dgf .Log .Trace ("\u0025\u0073",_cgfaa );_dgf .Log .Trace ("\u0025\u0073",_cgfaa .PdfObject );_gcffc ,_gfdcb :=_gb .GetDict (_cgfaa .PdfObject );if !_gfdcb {return _ga .New ("\u0070\u0061\u0067e \u006f\u0062\u006a\u0065\u0063\u0074\u0020\u0073\u0068o\u0075l\u0064 \u0062e\u0020\u0061\u0020\u0064\u0069\u0063\u0074\u0069\u006f\u006e\u0061\u0072\u0079");
 };_adgbbg ,_gfdcb :=_gb .GetName (_gcffc .Get ("\u0054\u0079\u0070\u0065"));if !_gfdcb {return _b .Errorf ("\u0070\u0061\u0067\u0065\u0020\u0073\u0068\u006f\u0075\u006c\u0064\u0020\u0068\u0061\u0076\u0065\u0020\u0061\u0020\u0054y\u0070\u0065\u0020\u006b\u0065\u0079\u0020\u0077\u0069t\u0068\u0020\u0061\u0020\u0076\u0061\u006c\u0075\u0065\u0020\u006f\u0066\u0020t\u0079\u0070\u0065\u0020\u006e\u0061m\u0065\u0020\u0028%\u0054\u0029",_gcffc .Get ("\u0054\u0079\u0070\u0065"));
@@ -1943,7 +1943,7 @@ return nil ;};if _efdc ==nil {_dgf .Log .Error ("\u0053\u0068\u0061\u0064in\u006
 };return _bdbddc ._gccef ;};
 
 // AddPages adds pages to be appended to the end of the source PDF.
-func (_cfac *PdfAppender )AddPages (pages ...*PdfPage ){for _ ,_dgdg :=range pages {_dgdg =_dgdg .Duplicate ();_cbdc (_dgdg );_cfac ._bcabf =append (_cfac ._bcabf ,_dgdg );};};
+func (_cfac *PdfAppender )AddPages (pages ...*PdfPage ){for _ ,_dgdg :=range pages {_dgdg =_dgdg .Duplicate ();_cfac ._bcabf =append (_cfac ._bcabf ,_dgdg );};};
 
 // NewPdfAnnotationSquare returns a new square annotation.
 func NewPdfAnnotationSquare ()*PdfAnnotationSquare {_ggf :=NewPdfAnnotation ();_acb :=&PdfAnnotationSquare {};_acb .PdfAnnotation =_ggf ;_acb .PdfAnnotationMarkup =&PdfAnnotationMarkup {};_ggf .SetContext (_acb );return _acb ;};
@@ -4050,7 +4050,7 @@ func (_bdbdd *PdfPageResources )HasColorspaceByName (keyName _gb .PdfObjectName 
 return false ;};if _cace ==nil {return false ;};_ ,_bfdea :=_cace .Colorspaces [string (keyName )];return _bfdea ;};
 
 // ReplacePage replaces the original page to a new page.
-func (_deac *PdfAppender )ReplacePage (pageNum int ,page *PdfPage ){_afbea :=pageNum -1;for _bdce :=range _deac ._bcabf {if _bdce ==_afbea {_bace :=page .Duplicate ();_cbdc (_bace );_deac ._bcabf [_bdce ]=_bace ;};};};func _ebg (_cfd _gb .PdfObject )(*PdfFilespec ,error ){if _cfd ==nil {return nil ,nil ;
+func (_deac *PdfAppender )ReplacePage (pageNum int ,page *PdfPage ){_afbea :=pageNum -1;for _bdce :=range _deac ._bcabf {if _bdce ==_afbea {_bace :=page .Duplicate ();_deac ._bcabf [_bdce ]=_bace ;};};};func _ebg (_cfd _gb .PdfObject )(*PdfFilespec ,error ){if _cfd ==nil {return nil ,nil ;
 };return NewPdfFilespecFromObj (_cfd );};
 
 // PdfActionImportData represents a importData action.
